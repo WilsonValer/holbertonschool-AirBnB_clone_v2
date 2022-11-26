@@ -28,7 +28,7 @@ class DBStorage():
         password = getenv('HBNB_MYSQL_PWD')
         host = getenv('HBNB_MYSQL_HOST')
         database =getenv('HBNB_MYSQL_DB')
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(user, password, host, database, pool_pre_ping=True))
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(user, password, database), pool_pre_ping=True)
 
         if getenv("HBNB_ENV") == 'test':
             Base.metadata.drop_all(self.__engine)
@@ -52,11 +52,12 @@ class DBStorage():
 
     def new(self, obj):
         """add the object to the current database session"""
-        self.__session.commit()
+        self.__session.add(obj)
 
     def save(self):
         """commit all changes of the current database session"""
         self.__session.commit()
+    
 
     def delete(self, obj=None):
         """delete from the current database session"""
@@ -69,7 +70,7 @@ class DBStorage():
             scope_session invoque to the sessionmaker
         """
         Base.metadata.create_all(self.__engine)
-        Session = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
 
