@@ -63,6 +63,6 @@ class BaseModel:
         return dictionary
 
         def delete(self):
-            """Create delete method"""
+            """delete the current instance from the storage"""
             from models import storage
             storage.delete(self)
