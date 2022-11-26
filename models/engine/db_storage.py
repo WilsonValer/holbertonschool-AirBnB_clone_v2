@@ -6,12 +6,12 @@ module for the DBSstorage
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from os import getenv
-#from models.amenity import Amenity
+# from models.amenity import Amenity
 from models.city import City
 from models.state import State
-#from models.user import User
-#from models.place import Place
-#from models.review import Review
+# from models.user import User
+# from models.place import Place
+# from models.review import Review
 from models.base_model import BaseModel, Base
 
 
@@ -26,8 +26,10 @@ class DBStorage():
         user = getenv('HBNB_MYSQL_USER')
         password = getenv('HBNB_MYSQL_PWD')
         host = getenv('HBNB_MYSQL_HOST')
-        database =getenv('HBNB_MYSQL_DB')
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(user, password, database), pool_pre_ping=True)
+        database = getenv('HBNB_MYSQL_DB')
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.
+                                      format(user, password, database),
+                                      pool_pre_ping=True)
 
         if getenv("HBNB_ENV") == 'test':
             Base.metadata.drop_all(self.__engine)
@@ -56,7 +58,6 @@ class DBStorage():
     def save(self):
         """commit all changes of the current database session"""
         self.__session.commit()
-    
 
     def delete(self, obj=None):
         """delete from the current database session"""
@@ -69,11 +70,11 @@ class DBStorage():
             scope_session invoque to the sessionmaker
         """
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        session_factory = sessionmaker(bind=self.__engine,
+                                       expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
 
     def close(self):
         """method to close the session"""
         self.__session.close()
-
