@@ -40,7 +40,7 @@ class DBStorage():
         """
         class_dict = {}
         if cls is None:
-            cls = [State, City, Amenity, Place, Review, User]
+            cls = [State, City]
         else:
             cls = [cls]
         for elem in cls:
