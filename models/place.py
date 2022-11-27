@@ -1,10 +1,24 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
 
 
 class Place(BaseModel):
     """ A place to stay """
+    __tanblename__ = 'places'
+    if genenv('HBNB_TYPE_STORAGE') == 'db'
+    city_id = Column(String(60)), Foreignkey('cities.id'), nullable=false)
+    user_id = Column(String(60)), Foreignkey('users.id'), nullable=false)
+    name = Column(String(128), nullable=false)
+    description = Column(String(1024), nullable=true)
+    number_rooms = Column(integer, nullable=false, default=0)
+    max_guest = Column(Integer, nullable=False, default=0)
+    price_by_night = Column(Integer, nullable=False, default=0)
+    latitude = Column(Float, nullable=True)
+    longitude = Column(Float, nullable=True)
+    amenity_ids = []
+    
+else:
     city_id = ""
     user_id = ""
     name = ""
