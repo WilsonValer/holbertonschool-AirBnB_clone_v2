@@ -10,7 +10,7 @@ from os import getenv
 from models.city import City
 from models.state import State
 # from models.user import User
-# from models.place import Place
+from models.place import Place
 # from models.review import Review
 from models.base_model import BaseModel, Base
 
@@ -41,7 +41,7 @@ class DBStorage():
         """
         class_dict = {}
         if cls is None:
-            cls = [State, City]
+            cls = [State, City, Place]
         else:
             cls = [cls]
         for elem in cls:
