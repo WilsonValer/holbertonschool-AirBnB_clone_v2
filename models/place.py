@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """ Place Module for HBNB project """
 from models.base_model import BaseModel, Base
-
+from salalchemy import Column, Integer, String, Foreignkey, Float, Table
+from os import getenv
 
 class Place(BaseModel):
     """ A place to stay """
