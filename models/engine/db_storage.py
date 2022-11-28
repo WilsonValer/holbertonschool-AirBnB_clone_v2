@@ -10,7 +10,7 @@ from os import getenv
 from models.city import City
 from models.state import State
 from models.user import User
-# from models.place import Place
+from models.place import Place
 # from models.review import Review
 from models.base_model import BaseModel, Base
 
@@ -44,7 +44,7 @@ class DBStorage():
             objs = self.__session.query(cls).all()
 
         else:
-            classes = [State, City, User]
+            classes = [State, City, User, Place]
             objs = []
             for cls in classes:
                 objs += self.__session.query(cls)
