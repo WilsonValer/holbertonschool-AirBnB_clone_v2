@@ -39,17 +39,24 @@ class DBStorage():
             objects depending of the class name (argument cls)
             if cls = None return all types of objects
         """
-        class_dict = {}
-        if cls is None:
-            cls = [State, City]
+
+        if cls:
+            objs = self.__session.query(cls).all()
+
         else:
-            cls = [cls]
-        for elem in cls:
-            datas = self.__session.query(elem).all()
-            for result in datas:
-                key = "{}.{}".format(type(result).__name__, result.id)
-                class_dict[key] = result
-        return class_dict
+            classes = [State, City]
+            objs = []
+            for cls in classes:
+                objs += self.__session.query(cls)
+
+        """create and save data"""
+        new_dict = {}
+
+        for obj in objs:
+            key = '{}.{}'.format(type(obj).__name__, obj.id)
+            new_dict[key] = obj
+
+        return new_dict
 
     def new(self, obj):
         """add the object to the current database session"""
