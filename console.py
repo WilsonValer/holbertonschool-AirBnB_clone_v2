@@ -128,15 +128,12 @@ class HBNBCommand(cmd.Cmd):
         for key_value in holbie:
             wiwi = key_value.split("=")[1]
             param = wiwi.replace("_", " ")
-            if param.isdigit():
+            if "\"" in param:
+                param = param.strip("\"")
+            elif param.isdigit():
                 param = int(param)
             elif "." in param:
-                try:
-                    param = float(param)
-                except Exception:
-                    pass
-            elif "\"" in param:
-                param = param.strip("\"")
+                param = float(param)
             setattr(new_instance, key_value.split("=")[0], param)
 
         storage.new(new_instance)
