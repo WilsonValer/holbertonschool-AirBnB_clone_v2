@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-""" Write a script that starts a Flask web application:"""
+""" Starting a Flask web application """
+
 from flask import Flask
 from markupsafe import escape
 
 app = Flask(__name__)
 
-#  Utilice el route()decorador para vincular una función a una URL.
 
 
 @app.route("/")
