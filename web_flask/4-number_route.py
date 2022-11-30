@@ -1,41 +1,44 @@
 #!/usr/bin/python3
-""" Starts a Flask web application """
+"""
+starts a Flask web application
+"""
+
 from flask import Flask
 app = Flask(__name__)
 
 
-@app.route('/',  strict_slashes=False)
-def hello_hbnb():
-    """ display a message """
+@app.route('/', strict_slashes=False)
+def index():
+    """This function returns Hello HBNB!"""
     return 'Hello HBNB!'
 
 
-@app.route('/hbnb',  strict_slashes=False)
+@app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """ display a message """
+    """returns HBNB"""
     return 'HBNB'
 
 
-@app.route('/c/<text>',  strict_slashes=False)
-def c_isfun(text):
-    """ display “C ” followed by the value of the text variable """
-    return 'C {}'.format(text.replace('_', ' '))
+@app.route('/c/<text>', strict_slashes=False)
+def cisfun(text):
+    """display “C ” followed by the value of the text variable"""
+    c_fun = text.replace('_', ' ')
+    return 'C {}'.format(c_fun)
 
 
-@app.route('/python/')
-@app.route('/python/<text>',  strict_slashes=False)
-def python_(text='is cool'):
-    """
-    display “Python ”, followed by the value of the text variable,
-    with default value of text: "is cool"
-    """
-    return 'Python {}'.format(text.replace('_', ' '))
+@app.route('/python', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
+def pythoniscool(text='is cool'):
+    """display “Python ”, followed by the value of the text variable"""
+    c_fun = text.replace('_', ' ')
+    return 'C {}'.format(c_fun)
+
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def show_post(n):
-    """display “n is a number” only if n is an integer"""
-    return f'{n} is a number'
+def imanumber(n):
+    """This fuction displays  “n is a number” only if n is an integer"""
+    return "{:d} is a number".format(n)
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port='5000')
