@@ -4,16 +4,19 @@ from flask import Flask
 
 app = Flask(__name__)
 
+#  Utilice el route()decorador para vincular una función a una URL.
 
-@app.route("/") # Utilice el route()decorador para vincular una función a una URL.
+
+@app.route("/")
 def hello_world():
     """ method that return mesages in the server"""
     return "Hello HBNB!"
 
-@app.route("/hbnb") 
+
+@app.route("/hbnb")
 def hbnb():
     """ method that return mesages in the server"""
-    return "HBNB!"
+    return "HBNB"
 
 
 if (__name__ == '__main__'):
