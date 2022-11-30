@@ -44,6 +44,8 @@ def imanumber(n):
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     """H1 tag: Number: n inside the tag BODY"""
+    if not n.isnumeric():
+        abort(404)
     return render_template('5-number.html', key_name=n)
 
 
