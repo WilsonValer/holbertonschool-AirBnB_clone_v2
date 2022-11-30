@@ -41,10 +41,10 @@ def imanumber(n):
     return "{:d} is a number".format(n)
 
 
-@app.route('/number_template/int:<n>', strict_slashes=False)
+@app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     """H1 tag: Number: n inside the tag BODY"""
-    return render_template('5-number.html', key_name=name)
+    return render_template('5-number.html', key_name=n)
 
 
 if __name__ == '__main__':
