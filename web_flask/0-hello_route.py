@@ -4,11 +4,11 @@ from flask import Flask
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def hello_world():
     """ method that return mesages in the server"""
     return "Hello HBNB!"
-
 
 
 if (__name__ == '__main__'):
