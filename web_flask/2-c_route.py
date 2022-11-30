@@ -1,31 +1,27 @@
 #!/usr/bin/python3
 """ Starting a Flask web application """
-
 from flask import Flask
-from markupsafe import escape
-
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 
 
+@app.route('/')
+def hello_hbnb():
+    """ display a message """
+    return 'Hello HBNB!'
 
-@app.route("/")
-def hello_world():
-    """ method that return mesages in the server"""
-    return "Hello HBNB!"
 
-
-@app.route("/hbnb")
+@app.route('/hbnb')
 def hbnb():
-    """ method that return mesages in the server"""
-    return "HBNB"
+    """ display a message """
+    return 'HBNB'
 
 
-@app.route("/c/<text>", strict_slashes=False)
-def text(text):
-    """Write a script that starts a Flask web application:"""
-    c_fun = text.replace('_', ' ')
-    return f'C {escape(c_fun)}'
+@app.route('/c/<text>')
+def c_isfun(text):
+    """ display “C ” followed by the value of the text variable """
+    return 'C {}'.format(text.replace('_', ' '))
 
 
-if (__name__ == '__main__'):
-    app.run(debug=True, host="0.0.0.0", port=6000)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
