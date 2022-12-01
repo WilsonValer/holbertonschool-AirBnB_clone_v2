@@ -45,7 +45,7 @@ def imanumber(n):
 @app.route("/number_template/<int:n>", strict_slashes=False)
 def number_template(n):
     """Display the int on a h1 tag"""
-    return (render_template('5-number.html', key_name=escape(n)))
+    return render_template('5-number.html', key_name=int(n))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5000')
