@@ -4,10 +4,6 @@
         <TITLE>HBNB</TITLE>
     </HEAD>
     <BODY>
-		{% if key_name is even %}
-			<h1>Number {{ key_name }} is even</h1>
-		{% else %}
-			<h1>Number {{ key_name }} is odd</h1>
-		{% endif %}
+		<H1>Number: {{ key_name }} is {{ 'even' if key_name % 2 == 0 else 'odd' }}</H1>
     </BODY>
 </HTML>
