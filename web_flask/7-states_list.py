@@ -13,11 +13,12 @@ def states_list():
     values = storage.all(State).values()
     return (render_template('7-states_list.html', states=values))
 
-@app.route("/cities_by_states", strict_slashes=False)
-def cities_by_states():
-    """Dispaly the list of cities"""
-    states = storage.all(State).values()
-    return (render_template('7-states_list.html', states=states))
+
+@app.teardown_appcontext
+def teardown(self):
+    """to clse the conection"""
+    storage.close()
+
 
 if (__name__ == '__main__'):
     app.run(host="0.0.0.0", port=5000)
