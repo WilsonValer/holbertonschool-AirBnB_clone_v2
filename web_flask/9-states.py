@@ -6,28 +6,30 @@ from models.state import State
 
 
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 
 
-@app.route("/states", strict_slashes=False)
+@app.route("/states")
 def states():
-    """Dispaly the list of cities"""
-    states = storage.all(State).values()
-    return (render_template('9-states.html', states=states))
+    """Displays an HTML page with a list of all States.
+    States are sorted by name.
+    """
+    states = storage.all("State")
+    return render_template("9-states.html", states=states)
 
 
-@app.route("/states/<id>", strict_slashes=False)
+@app.route("/states/<id>")
 def states_id(id):
-    """Dispaly the list of cities"""
-    value_objts = storage.all(State).values()
-    for states in value_objts:
+    """Displays an HTML page with info about <id>, if it exists."""
+    for states in storage.all("State").values():
         if states.id == id:
-            return render_template('9-states.html', states=states)
+            return render_template("9-states.html", states=states)
     return render_template("9-states.html")
 
 
 @app.teardown_appcontext
 def teardown(exc):
-    """to clse the conection"""
+    """Remove the current SQLAlchemy session."""
     storage.close()
 
 
